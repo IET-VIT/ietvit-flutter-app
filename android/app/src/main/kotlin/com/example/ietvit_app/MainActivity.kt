@@ -1,0 +1,6 @@
+package com.example.ietvit_app
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity() {
+}
