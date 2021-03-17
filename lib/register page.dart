@@ -41,7 +41,7 @@ class _RegPageState extends State<RegPage> {
                 width: queryData.size.width,
               ),
               new Container(
-                height: queryData.size.height * 0.66,
+                height: queryData.size.height * 0.625,
                 width: queryData.size.width,
                 decoration: new BoxDecoration(
                   color: Color(0xFF57B7DF),

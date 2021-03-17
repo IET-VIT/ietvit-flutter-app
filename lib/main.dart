@@ -48,14 +48,14 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
           new Padding(
-            padding: const EdgeInsets.only(top: 50),
+            padding: const EdgeInsets.only(top: 52),
           ),
           new Image.asset(
             "assets/images/ic_wave.png",
             width: queryData.size.width,
           ),
           new Container(
-            height: queryData.size.height * 0.648,
+            height: queryData.size.height * 0.625,
             width: queryData.size.width,
             decoration: new BoxDecoration(color: Color(0xFF28B9E4)),
             child: new Column(
