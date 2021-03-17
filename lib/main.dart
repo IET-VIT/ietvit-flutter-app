@@ -170,7 +170,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                         new Padding(
-                          padding: const EdgeInsets.only(top: 120, right: 16),
+                          padding: const EdgeInsets.only(top: 80, right: 16),
                         ),
                         new Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
