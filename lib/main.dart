@@ -23,6 +23,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    MediaQueryData queryData = MediaQuery.of(context);
     return Scaffold(
         backgroundColor: Colors.white,
         body: new SingleChildScrollView(
@@ -30,47 +31,55 @@ class _HomePageState extends State<HomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               new Padding(
-                padding: const EdgeInsets.only(top: 50),
+                padding: const EdgeInsets.only(top:32),
               ),
               new Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   new Image.asset(
                     "assets/images/iet_logo.png",
-                    height: 150,
-                    width: 200,
+                    height: 140,
+                    width: 140,
                   ),
                   new Image.asset(
                     "assets/images/hackoff_logo.png",
-                    height: 150,
-                    width: 200,
+                    height: 140,
+                    width: 140,
                   )
                 ],
               ),
               new Padding(
-                padding: const EdgeInsets.only(top: 100),
+                padding: const EdgeInsets.only(top: 10),
+              ),
+              new Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  new Image.asset(
+                    "assets/images/ic_wave.png",
+                    height: 120,
+                    width: queryData.size.width,
+                  ),
+                ],
               ),
               new Container(
                 height: 595,
-                width: 500,
+                width: queryData.size.width,
                 decoration: new BoxDecoration(
-                    color: Color(0xFF57B7DF),
-                    borderRadius: new BorderRadius.only(
-                        topRight: Radius.circular(50),
-                        topLeft: Radius.circular(50))),
+                    color: Color(0xFF28B9E4)),
                 child: new Column(
                   children: [
-                    new Padding(padding: const EdgeInsets.all(10)),
+                    new Padding(padding: const EdgeInsets.only(top: 24)),
                     new Center(
                       child: new Text(
                         "Login",
                         style: TextStyle(
-                            fontSize: 45,
+                            fontSize: 36,
                             color: Color(0xFF0B2751),
-                            fontFamily: "poppins_semibold"),
+                            fontWeight: FontWeight.bold,
+                            fontFamily: "roboto_medium"),
                       ),
                     ),
-                    new Padding(padding: const EdgeInsets.only(top: 25)),
+                    new Padding(padding: const EdgeInsets.only(top: 52)),
                     new Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -90,14 +99,15 @@ class _HomePageState extends State<HomePage> {
                               children: [
                                 new SvgPicture.asset(
                                   "assets/icons/email.svg",
-                                  height: 40,
-                                  width: 30,
+                                  height: 32,
+                                  width: 32,
                                 ),
                                 new Text("Login with E-mail",
                                     style: TextStyle(
-                                        fontSize: 20,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
                                         color: Color(0xFF0B2751),
-                                        fontFamily: "poppins_semibold"))
+                                        fontFamily: "sans-serif"))
                               ],
                             ),
                           ),
@@ -120,15 +130,16 @@ class _HomePageState extends State<HomePage> {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 new SvgPicture.asset(
-                                  "assets/icons/pichai.svg",
-                                  height: 40,
-                                  width: 30,
+                                  "assets/icons/google.svg",
+                                  height: 32,
+                                  width: 32,
                                 ),
                                 new Text("Login with Google",
                                     style: TextStyle(
-                                        fontSize: 20,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
                                         color: Color(0xFF0B2751),
-                                        fontFamily: "poppins_semibold"))
+                                        fontFamily: "sans-serif"))
                               ],
                             ),
                           ),
@@ -152,20 +163,21 @@ class _HomePageState extends State<HomePage> {
                               children: [
                                 new SvgPicture.asset(
                                   "assets/icons/github.svg",
-                                  height: 40,
-                                  width: 30,
+                                  height: 32,
+                                  width: 32,
                                 ),
                                 new Text("Login with GitHub",
                                     style: TextStyle(
-                                        fontSize: 20,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
                                         color: Color(0xFF0B2751),
-                                        fontFamily: "poppins_semibold"))
+                                        fontFamily: "sans-serif"))
                               ],
                             ),
                           ),
                         ),
                         new Padding(
-                          padding: const EdgeInsets.only(top: 140),
+                          padding: const EdgeInsets.only(top: 120, right: 16),
                         ),
                         new Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
@@ -177,14 +189,15 @@ class _HomePageState extends State<HomePage> {
                                 height: 40,
                                 child: new Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     new Text(
                                       "REGISTER",
                                       style: TextStyle(
-                                          fontSize: 20,
+                                          fontSize: 14,
                                           color: Colors.white,
-                                          fontFamily: "poppins_semibold"),
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily: "sans-serif"),
                                     ),
                                   ],
                                 ),
@@ -193,7 +206,7 @@ class _HomePageState extends State<HomePage> {
                                         BorderRadius.all(Radius.circular(50)),
                                     gradient: LinearGradient(colors: [
                                       Color(0xFF0B2751),
-                                      Color(0xFFAAD6EA)
+                                      Color(0xFF57B7D7)
                                     ])),
                               ),
                               onTap: () {

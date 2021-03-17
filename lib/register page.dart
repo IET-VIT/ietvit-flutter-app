@@ -8,6 +8,7 @@ class RegPage extends StatefulWidget {
 class _RegPageState extends State<RegPage> {
   @override
   Widget build(BuildContext context) {
+    MediaQueryData queryData = MediaQuery.of(context);
     return Scaffold(
         backgroundColor: Colors.white,
         body: new SingleChildScrollView(
@@ -33,26 +34,35 @@ class _RegPageState extends State<RegPage> {
                 ],
               ),
               new Padding(
-                padding: const EdgeInsets.only(top: 100),
+                padding: const EdgeInsets.only(top: 10),
+              ),
+              new Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  new Image.asset(
+                    "assets/images/ic_wave.png",
+                    height: 120,
+                    width: queryData.size.width,
+                  ),
+                ],
               ),
               new Container(
                 height: 595,
-                width: 500,
+                width: double.infinity,
                 decoration: new BoxDecoration(
                     color: Color(0xFF57B7DF),
-                    borderRadius: new BorderRadius.only(
-                        topRight: Radius.circular(50),
-                        topLeft: Radius.circular(50))),
+                ),
                 child: new Column(
                   children: [
-                    new Padding(padding: const EdgeInsets.all(10)),
+                    new Padding(padding: const EdgeInsets.only(top: 20)),
                     new Center(
                       child: new Text(
                         "Register with E-Mail",
                         style: TextStyle(
                             fontSize: 30,
                             color: Color(0xFF0B2751),
-                            fontFamily: "poppins_semibold"),
+                            fontWeight: FontWeight.bold,
+                            fontFamily: "roboto_medium"),
                       ),
                     ),
                     new Padding(padding: const EdgeInsets.only(top: 25)),
@@ -132,17 +142,16 @@ class _RegPageState extends State<RegPage> {
                             width: 350,
                             height: 60,
                             child: new Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                new Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 40, horizontal: 50),
-                                ),
                                 new Text(
                                   "REGISTER",
                                   style: TextStyle(
-                                      fontSize: 30,
+                                      fontSize: 18,
                                       color: Colors.white,
-                                      fontFamily: "poppins_semibold"),
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: "sans-serif-medium"),
                                 ),
                               ],
                             ),
@@ -151,7 +160,7 @@ class _RegPageState extends State<RegPage> {
                                     BorderRadius.all(Radius.circular(50)),
                                 gradient: LinearGradient(colors: [
                                   Color(0xFF0B2751),
-                                  Color(0xFFAAD6EA)
+                                  Color(0xFF57B7D7)
                                 ])),
                           ),
                           onTap: () {},
