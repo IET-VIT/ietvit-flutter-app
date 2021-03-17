@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               new Padding(
-                padding: const EdgeInsets.only(top:32),
+                padding: const EdgeInsets.only(top: 32),
               ),
               new Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -49,23 +49,16 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
               new Padding(
-                padding: const EdgeInsets.only(top: 10),
+                padding: const EdgeInsets.only(top: 50),
               ),
-              new Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  new Image.asset(
-                    "assets/images/ic_wave.png",
-                    height: 120,
-                    width: queryData.size.width,
-                  ),
-                ],
+              new Image.asset(
+                "assets/images/ic_wave.png",
+                width: queryData.size.width,
               ),
               new Container(
-                height: 595,
+                height: queryData.size.height * 0.66,
                 width: queryData.size.width,
-                decoration: new BoxDecoration(
-                    color: Color(0xFF28B9E4)),
+                decoration: new BoxDecoration(color: Color(0xFF28B9E4)),
                 child: new Column(
                   children: [
                     new Padding(padding: const EdgeInsets.only(top: 24)),
@@ -85,7 +78,7 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         new Container(
                           height: 60,
-                          width: 300,
+                          width: 250,
                           decoration: new BoxDecoration(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(40))),
@@ -117,7 +110,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         new Container(
                           height: 60,
-                          width: 300,
+                          width: 250,
                           decoration: new BoxDecoration(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(40))),
@@ -149,7 +142,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         new Container(
                           height: 60,
-                          width: 300,
+                          width: 250,
                           decoration: new BoxDecoration(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(40))),

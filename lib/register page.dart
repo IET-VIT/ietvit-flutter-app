@@ -16,7 +16,7 @@ class _RegPageState extends State<RegPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               new Padding(
-                padding: const EdgeInsets.only(top: 50),
+                padding: const EdgeInsets.only(top: 32),
               ),
               new Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -34,23 +34,17 @@ class _RegPageState extends State<RegPage> {
                 ],
               ),
               new Padding(
-                padding: const EdgeInsets.only(top: 10),
+                padding: const EdgeInsets.only(top: 50),
               ),
-              new Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  new Image.asset(
-                    "assets/images/ic_wave.png",
-                    height: 120,
-                    width: queryData.size.width,
-                  ),
-                ],
+              new Image.asset(
+                "assets/images/ic_wave.png",
+                width: queryData.size.width,
               ),
               new Container(
-                height: 595,
-                width: double.infinity,
+                height: queryData.size.height * 0.66,
+                width: queryData.size.width,
                 decoration: new BoxDecoration(
-                    color: Color(0xFF57B7DF),
+                  color: Color(0xFF57B7DF),
                 ),
                 child: new Column(
                   children: [
