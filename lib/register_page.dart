@@ -44,11 +44,11 @@ class _RegPageState extends State<RegPage> {
                 height: queryData.size.height * 0.65,
                 width: queryData.size.width,
                 decoration: new BoxDecoration(
-                  color: Color(0xFF57B7DF),
+                  color: Color(0xFF28B9E4),
                 ),
                 child: new Column(
                   children: [
-                    new Padding(padding: const EdgeInsets.only(top: 20)),
+                    new Padding(padding: const EdgeInsets.only(top: 10)),
                     new Center(
                       child: new Text(
                         "Register with E-Mail",
@@ -59,7 +59,7 @@ class _RegPageState extends State<RegPage> {
                             fontFamily: "roboto_medium"),
                       ),
                     ),
-                    new Padding(padding: const EdgeInsets.only(top: 25)),
+                    new Padding(padding: const EdgeInsets.only(top: 45)),
                     new Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -68,17 +68,34 @@ class _RegPageState extends State<RegPage> {
                             width: 350,
                             decoration: new BoxDecoration(
                                 color: Colors.white,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(40))),
+                                borderRadius: BorderRadius.all(Radius.circular(20))),
                             child: new TextField(
+                              autocorrect: false,
                               decoration: new InputDecoration(
-                                  border: InputBorder.none,
-                                  focusedBorder: InputBorder.none,
-                                  enabledBorder: InputBorder.none,
+                                  prefixIcon: Padding(
+                                      padding: const EdgeInsets.only(right: 10, left: 15),
+                                      child: Image.asset("assets/images/email.png", width: 40, height: 40,)
+                                  ),
+                                  prefixIconConstraints: BoxConstraints(
+                                    minWidth: 25,
+                                    minHeight: 25,
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                                    borderSide: BorderSide(
+                                        width: 2,
+                                        color: Color(0xFF0B2751)),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                                    borderSide: BorderSide(
+                                        width: 2,
+                                        color: Color(0xFF878787)),
+                                  ),
                                   contentPadding: const EdgeInsets.symmetric(
-                                      horizontal: 10, vertical: 15),
-                                  hintText: "E-Mail",
-                                  hintStyle: TextStyle(
+                                      horizontal: 20, vertical: 25),
+                                  labelText: "E-Mail",
+                                  labelStyle: TextStyle(
                                       fontSize: 20,
                                       fontFamily: "poppins_semibold")),
                             )),
@@ -90,46 +107,66 @@ class _RegPageState extends State<RegPage> {
                             width: 350,
                             decoration: new BoxDecoration(
                                 color: Colors.white,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(40))),
+                                borderRadius: BorderRadius.all(Radius.circular(20))),
                             child: new TextField(
+                              autocorrect: false,
+                              obscureText: true,
                               decoration: new InputDecoration(
-                                  border: InputBorder.none,
-                                  focusedBorder: InputBorder.none,
-                                  enabledBorder: InputBorder.none,
+                                  prefixIcon: Image.asset('assets/images/password.png'),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                                    borderSide: BorderSide(
+                                        width: 2,
+                                        color: Color(0xFF0B2751)),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                                    borderSide: BorderSide(
+                                        width: 2,
+                                        color: Color(0xFF878787)),
+                                  ),
                                   contentPadding: const EdgeInsets.symmetric(
-                                      horizontal: 10, vertical: 15),
-                                  hintText: "Password",
-                                  hintStyle: TextStyle(
+                                      horizontal: 20, vertical: 25),
+                                  labelText: "Password",
+                                  labelStyle: TextStyle(
                                       fontSize: 20,
                                       fontFamily: "poppins_semibold")),
                             )),
                         new Padding(
                           padding: const EdgeInsets.only(top: 20),
                         ),
-                        new GestureDetector(
-                          child: new Container(
-                              height: 60,
-                              width: 350,
-                              decoration: new BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(40))),
-                              child: new TextField(
-                                decoration: new InputDecoration(
-                                    border: InputBorder.none,
-                                    focusedBorder: InputBorder.none,
-                                    enabledBorder: InputBorder.none,
-                                    contentPadding: const EdgeInsets.symmetric(
-                                        horizontal: 10, vertical: 15),
-                                    hintText: "Confirm Password",
-                                    hintStyle: TextStyle(
-                                        fontSize: 20,
-                                        fontFamily: "poppins_semibold")),
-                              )),
-                        ),
+                        new Container(
+                            height: 60,
+                            width: 350,
+                            decoration: new BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.all(Radius.circular(20))),
+                            child: new TextField(
+                              autocorrect: false,
+                              obscureText: true,
+                              decoration: new InputDecoration(
+                                  prefixIcon: Image.asset('assets/images/password.png'),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                                    borderSide: BorderSide(
+                                        width: 2,
+                                        color: Color(0xFF0B2751)),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                                    borderSide: BorderSide(
+                                        width: 2,
+                                        color: Color(0xFF878787)),
+                                  ),
+                                  contentPadding: const EdgeInsets.symmetric(
+                                      horizontal: 20, vertical: 25),
+                                  labelText: "Confirm Password",
+                                  labelStyle: TextStyle(
+                                      fontSize: 20,
+                                      fontFamily: "poppins_semibold")),
+                            )),
                         new Padding(
-                          padding: const EdgeInsets.only(top: 110),
+                          padding: const EdgeInsets.only(top: 90),
                         ),
                         new GestureDetector(
                           child: new Container(

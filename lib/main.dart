@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:ietvit_app/register%20page.dart';
+import 'package:ietvit_app/register_page.dart';
+import 'package:ietvit_app/login_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -76,34 +77,41 @@ class _HomePageState extends State<HomePage> {
                   new Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      new Container(
-                        height: 60,
-                        width: 250,
-                        decoration: new BoxDecoration(
-                            borderRadius:
+                      GestureDetector(
+                        child: new Container(
+                          height: 60,
+                          width: 250,
+                          decoration: new BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(40)),
+                          ),
+                          child: new Card(
+                            shape: new RoundedRectangleBorder(
+                                borderRadius:
                                 BorderRadius.all(Radius.circular(40))),
-                        child: new Card(
-                          shape: new RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(40))),
-                          color: Colors.white,
-                          child: new Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              new SvgPicture.asset(
-                                "assets/icons/email.svg",
-                                height: 32,
-                                width: 32,
-                              ),
-                              new Text("Login with E-mail",
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      color: Color(0xFF0B2751),
-                                      fontFamily: "sans-serif"))
-                            ],
+                            color: Colors.white,
+                            child: new Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                new SvgPicture.asset(
+                                  "assets/icons/email.svg",
+                                  height: 32,
+                                  width: 32,
+                                ),
+                                new Text("Login with E-mail",
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                        color: Color(0xFF0B2751),
+                                        fontFamily: "sans-serif"))
+                              ],
+                            ),
                           ),
                         ),
+                        onTap: () {
+                          Navigator.push(
+                              context, MaterialPageRoute(builder:
+                              (BuildContext context) => LoginPage()));
+                        },
                       ),
                       new Padding(
                         padding: const EdgeInsets.only(top: 20),
@@ -113,11 +121,11 @@ class _HomePageState extends State<HomePage> {
                         width: 250,
                         decoration: new BoxDecoration(
                             borderRadius:
-                                BorderRadius.all(Radius.circular(40))),
+                            BorderRadius.all(Radius.circular(40))),
                         child: new Card(
                           shape: new RoundedRectangleBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(40))),
+                              BorderRadius.all(Radius.circular(40))),
                           color: Colors.white,
                           child: new Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -145,11 +153,11 @@ class _HomePageState extends State<HomePage> {
                         width: 250,
                         decoration: new BoxDecoration(
                             borderRadius:
-                                BorderRadius.all(Radius.circular(40))),
+                            BorderRadius.all(Radius.circular(40))),
                         child: new Card(
                           shape: new RoundedRectangleBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(40))),
+                              BorderRadius.all(Radius.circular(40))),
                           color: Colors.white,
                           child: new Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -196,7 +204,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                               decoration: new BoxDecoration(
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(50)),
+                                  BorderRadius.all(Radius.circular(50)),
                                   gradient: LinearGradient(colors: [
                                     Color(0xFF0B2751),
                                     Color(0xFF57B7D7)
