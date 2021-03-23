@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ietvit_app/home_page.dart';
 
 class RegPage extends StatefulWidget {
   @override
@@ -68,29 +69,34 @@ class _RegPageState extends State<RegPage> {
                             width: 350,
                             decoration: new BoxDecoration(
                                 color: Colors.white,
-                                borderRadius: BorderRadius.all(Radius.circular(20))),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20))),
                             child: new TextField(
                               autocorrect: false,
                               decoration: new InputDecoration(
                                   prefixIcon: Padding(
-                                      padding: const EdgeInsets.only(right: 10, left: 15),
-                                      child: Image.asset("assets/images/email.png", width: 40, height: 40,)
-                                  ),
+                                      padding: const EdgeInsets.only(
+                                          right: 10, left: 15),
+                                      child: Image.asset(
+                                        "assets/images/email.png",
+                                        width: 40,
+                                        height: 40,
+                                      )),
                                   prefixIconConstraints: BoxConstraints(
                                     minWidth: 25,
                                     minHeight: 25,
                                   ),
                                   focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(20)),
                                     borderSide: BorderSide(
-                                        width: 2,
-                                        color: Color(0xFF0B2751)),
+                                        width: 2, color: Color(0xFF0B2751)),
                                   ),
                                   enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(20)),
                                     borderSide: BorderSide(
-                                        width: 2,
-                                        color: Color(0xFF878787)),
+                                        width: 2, color: Color(0xFF878787)),
                                   ),
                                   contentPadding: const EdgeInsets.symmetric(
                                       horizontal: 20, vertical: 25),
@@ -107,23 +113,25 @@ class _RegPageState extends State<RegPage> {
                             width: 350,
                             decoration: new BoxDecoration(
                                 color: Colors.white,
-                                borderRadius: BorderRadius.all(Radius.circular(20))),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20))),
                             child: new TextField(
                               autocorrect: false,
                               obscureText: true,
                               decoration: new InputDecoration(
-                                  prefixIcon: Image.asset('assets/images/password.png'),
+                                  prefixIcon:
+                                      Image.asset('assets/images/password.png'),
                                   focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(20)),
                                     borderSide: BorderSide(
-                                        width: 2,
-                                        color: Color(0xFF0B2751)),
+                                        width: 2, color: Color(0xFF0B2751)),
                                   ),
                                   enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(20)),
                                     borderSide: BorderSide(
-                                        width: 2,
-                                        color: Color(0xFF878787)),
+                                        width: 2, color: Color(0xFF878787)),
                                   ),
                                   contentPadding: const EdgeInsets.symmetric(
                                       horizontal: 20, vertical: 25),
@@ -140,23 +148,25 @@ class _RegPageState extends State<RegPage> {
                             width: 350,
                             decoration: new BoxDecoration(
                                 color: Colors.white,
-                                borderRadius: BorderRadius.all(Radius.circular(20))),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20))),
                             child: new TextField(
                               autocorrect: false,
                               obscureText: true,
                               decoration: new InputDecoration(
-                                  prefixIcon: Image.asset('assets/images/password.png'),
+                                  prefixIcon:
+                                      Image.asset('assets/images/password.png'),
                                   focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(20)),
                                     borderSide: BorderSide(
-                                        width: 2,
-                                        color: Color(0xFF0B2751)),
+                                        width: 2, color: Color(0xFF0B2751)),
                                   ),
                                   enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(20)),
                                     borderSide: BorderSide(
-                                        width: 2,
-                                        color: Color(0xFF878787)),
+                                        width: 2, color: Color(0xFF878787)),
                                   ),
                                   contentPadding: const EdgeInsets.symmetric(
                                       horizontal: 20, vertical: 25),
