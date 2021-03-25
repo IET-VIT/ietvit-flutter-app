@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:ietvit_app/home_page.dart';
 
@@ -7,10 +9,43 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final GlobalKey<ScaffoldState> scaffkey = GlobalKey<ScaffoldState>();
+  String mail;
+  String password;
+  String errorMessage;
+  Future<void> signIn() async {
+    if (formKey.currentState.validate()) {
+      formKey.currentState.save();
+      try {
+        await Firebase.initializeApp();
+        await FirebaseAuth.instance
+            .signInWithEmailAndPassword(email: mail, password: password);
+        Navigator.push(context,
+            MaterialPageRoute(builder: (BuildContext context) => HomePage()));
+      } catch (e) {
+        print(e);
+        setState(() {
+          errorMessage = e.toString();
+        });
+        final snackb = new SnackBar(
+            backgroundColor: Colors.red,
+            duration: new Duration(seconds: 4),
+            content: new Text(errorMessage + " :(",
+                style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                    fontFamily: "poppins_semibold")));
+        scaffkey.currentState.showSnackBar(snackb);
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     MediaQueryData queryData = MediaQuery.of(context);
     return Scaffold(
+        key: scaffkey,
         backgroundColor: Colors.white,
         body: new SingleChildScrollView(
           child: new Column(
@@ -61,123 +96,130 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     new Padding(padding: const EdgeInsets.only(top: 56)),
-                    new Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        new Container(
-                            height: 60,
-                            width: 350,
-                            decoration: new BoxDecoration(
-                                color: Colors.white,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20))),
-                            child: new TextField(
-                              autocorrect: false,
-                              decoration: new InputDecoration(
-                                  prefixIcon: Padding(
-                                      padding: const EdgeInsets.only(
-                                          right: 10, left: 15),
-                                      child: Image.asset(
-                                        "assets/images/email.png",
-                                        width: 40,
-                                        height: 40,
-                                      )),
-                                  prefixIconConstraints: BoxConstraints(
-                                    minWidth: 25,
-                                    minHeight: 25,
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(20)),
-                                    borderSide: BorderSide(
-                                        width: 2, color: Color(0xFF0B2751)),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(20)),
-                                    borderSide: BorderSide(
-                                        width: 2, color: Color(0xFF878787)),
-                                  ),
-                                  contentPadding: const EdgeInsets.symmetric(
-                                      horizontal: 20, vertical: 25),
-                                  labelText: "E-Mail",
-                                  labelStyle: TextStyle(
-                                      fontSize: 20,
-                                      fontFamily: "poppins_semibold")),
-                            )),
-                        new Padding(
-                          padding: const EdgeInsets.only(top: 20),
-                        ),
-                        new Container(
-                            height: 60,
-                            width: 350,
-                            decoration: new BoxDecoration(
-                                color: Colors.white,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20))),
-                            child: new TextField(
-                              autocorrect: false,
-                              obscureText: true,
-                              decoration: new InputDecoration(
-                                  prefixIcon:
-                                      Image.asset('assets/images/password.png'),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(20)),
-                                    borderSide: BorderSide(
-                                        width: 2, color: Color(0xFF0B2751)),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(20)),
-                                    borderSide: BorderSide(
-                                        width: 2, color: Color(0xFF878787)),
-                                  ),
-                                  contentPadding: const EdgeInsets.symmetric(
-                                      horizontal: 20, vertical: 25),
-                                  labelText: "Password",
-                                  labelStyle: TextStyle(
-                                      fontSize: 20,
-                                      fontFamily: "poppins_semibold")),
-                            )),
-                        new Padding(
-                          padding: const EdgeInsets.only(top: 120),
-                        ),
-                        new GestureDetector(
-                          child: new Container(
-                            width: 350,
-                            height: 60,
-                            child: new Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                new Text(
-                                  "Login",
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: "sans-serif-medium"),
-                                ),
-                              ],
-                            ),
-                            decoration: new BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(50)),
-                                gradient: LinearGradient(colors: [
-                                  Color(0xFF0B2751),
-                                  Color(0xFF57B7D7)
-                                ])),
+                    new Form(
+                      key: formKey,
+                      child: new Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          new Container(
+                              height: 60,
+                              width: 350,
+                              decoration: new BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20))),
+                              child: new TextFormField(
+                                autocorrect: false,
+                                decoration: new InputDecoration(
+                                    prefixIcon: Padding(
+                                        padding: const EdgeInsets.only(
+                                            right: 10, left: 15),
+                                        child: Image.asset(
+                                          "assets/images/email.png",
+                                          width: 40,
+                                          height: 40,
+                                        )),
+                                    prefixIconConstraints: BoxConstraints(
+                                      minWidth: 25,
+                                      minHeight: 25,
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(20)),
+                                      borderSide: BorderSide(
+                                          width: 2, color: Color(0xFF0B2751)),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(20)),
+                                      borderSide: BorderSide(
+                                          width: 2, color: Color(0xFF878787)),
+                                    ),
+                                    contentPadding: const EdgeInsets.symmetric(
+                                        horizontal: 20, vertical: 25),
+                                    labelText: "E-Mail",
+                                    labelStyle: TextStyle(
+                                        fontSize: 20,
+                                        fontFamily: "poppins_semibold")),
+                                validator: (val) => val.contains("@")
+                                    ? null
+                                    : "Enter Valid Mail ID",
+                                onSaved: (val) => mail = val,
+                                keyboardType: TextInputType.emailAddress,
+                              )),
+                          new Padding(
+                            padding: const EdgeInsets.only(top: 20),
                           ),
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        HomePage()));
-                          },
-                        )
-                      ],
+                          new Container(
+                              height: 60,
+                              width: 350,
+                              decoration: new BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20))),
+                              child: new TextFormField(
+                                autocorrect: false,
+                                obscureText: true,
+                                decoration: new InputDecoration(
+                                    prefixIcon: Image.asset(
+                                        'assets/images/password.png'),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(20)),
+                                      borderSide: BorderSide(
+                                          width: 2, color: Color(0xFF0B2751)),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(20)),
+                                      borderSide: BorderSide(
+                                          width: 2, color: Color(0xFF878787)),
+                                    ),
+                                    contentPadding: const EdgeInsets.symmetric(
+                                        horizontal: 20, vertical: 25),
+                                    labelText: "Password",
+                                    labelStyle: TextStyle(
+                                        fontSize: 20,
+                                        fontFamily: "poppins_semibold")),
+                                keyboardType: TextInputType.name,
+                                validator: (val) => val.length < 3
+                                    ? "Enter Bigger Password"
+                                    : null,
+                                onSaved: (val) => password = val,
+                              )),
+                          new Padding(
+                            padding: const EdgeInsets.only(top: 120),
+                          ),
+                          new GestureDetector(
+                            child: new Container(
+                              width: 350,
+                              height: 60,
+                              child: new Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  new Text(
+                                    "Login",
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: "sans-serif-medium"),
+                                  ),
+                                ],
+                              ),
+                              decoration: new BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(50)),
+                                  gradient: LinearGradient(colors: [
+                                    Color(0xFF0B2751),
+                                    Color(0xFF57B7D7)
+                                  ])),
+                            ),
+                            onTap: signIn,
+                          )
+                        ],
+                      ),
                     )
                   ],
                 ),

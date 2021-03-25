@@ -1,6 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
+import 'package:ietvit_app/main.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -8,6 +11,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final User users = FirebaseAuth.instance.currentUser;
+  Future<void> signOut() async {
+    await Firebase.initializeApp();
+    FirebaseAuth.instance.signOut();
+    Navigator.pushReplacement(context,
+        MaterialPageRoute(builder: (BuildContext context) => MainPage()));
+  }
+
   @override
   Widget build(BuildContext context) {
     FlutterStatusbarcolor.setStatusBarColor(Color(0xFF28B9E4));
@@ -44,7 +55,7 @@ class _HomePageState extends State<HomePage> {
                     fontFamily: "roboto_medium"),
               ),
               accountEmail: new Text(
-                "testing@gmail.com",
+                users.email,
                 style: TextStyle(
                     fontSize: 15,
                     color: Colors.white38,
@@ -227,7 +238,7 @@ class _HomePageState extends State<HomePage> {
                   )
                 ],
               ),
-              onTap: () {},
+              onTap: signOut,
             ),
             new Padding(
               padding: const EdgeInsets.only(top: 160),

@@ -11,17 +11,17 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: new ThemeData(brightness: Brightness.light),
-      home: new HomePage(),
+      home: new MainPage(),
     );
   }
 }
 
-class HomePage extends StatefulWidget {
+class MainPage extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _MainPageState createState() => _MainPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     MediaQueryData queryData = MediaQuery.of(context);
@@ -87,7 +87,7 @@ class _HomePageState extends State<HomePage> {
                           child: new Card(
                             shape: new RoundedRectangleBorder(
                                 borderRadius:
-                                BorderRadius.all(Radius.circular(40))),
+                                    BorderRadius.all(Radius.circular(40))),
                             color: Colors.white,
                             child: new Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -109,8 +109,10 @@ class _HomePageState extends State<HomePage> {
                         ),
                         onTap: () {
                           Navigator.push(
-                              context, MaterialPageRoute(builder:
-                              (BuildContext context) => LoginPage()));
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      LoginPage()));
                         },
                       ),
                       new Padding(
@@ -121,11 +123,11 @@ class _HomePageState extends State<HomePage> {
                         width: 250,
                         decoration: new BoxDecoration(
                             borderRadius:
-                            BorderRadius.all(Radius.circular(40))),
+                                BorderRadius.all(Radius.circular(40))),
                         child: new Card(
                           shape: new RoundedRectangleBorder(
                               borderRadius:
-                              BorderRadius.all(Radius.circular(40))),
+                                  BorderRadius.all(Radius.circular(40))),
                           color: Colors.white,
                           child: new Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -153,11 +155,11 @@ class _HomePageState extends State<HomePage> {
                         width: 250,
                         decoration: new BoxDecoration(
                             borderRadius:
-                            BorderRadius.all(Radius.circular(40))),
+                                BorderRadius.all(Radius.circular(40))),
                         child: new Card(
                           shape: new RoundedRectangleBorder(
                               borderRadius:
-                              BorderRadius.all(Radius.circular(40))),
+                                  BorderRadius.all(Radius.circular(40))),
                           color: Colors.white,
                           child: new Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -204,7 +206,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                               decoration: new BoxDecoration(
                                   borderRadius:
-                                  BorderRadius.all(Radius.circular(50)),
+                                      BorderRadius.all(Radius.circular(50)),
                                   gradient: LinearGradient(colors: [
                                     Color(0xFF0B2751),
                                     Color(0xFF57B7D7)
