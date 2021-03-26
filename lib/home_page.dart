@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:ietvit_app/main.dart';
+import 'package:ietvit_app/profile_page.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class HomePage extends StatefulWidget {
@@ -240,7 +241,9 @@ class _HomePageState extends State<HomePage> {
                   )
                 ],
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>ProfilePage()));
+              },
             ),
             new Padding(
               padding: const EdgeInsets.only(top: 20),
