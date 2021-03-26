@@ -1,9 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:ietvit_app/main.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -18,6 +20,30 @@ class _HomePageState extends State<HomePage> {
     FirebaseAuth.instance.signOut();
     Navigator.pushReplacement(context,
         MaterialPageRoute(builder: (BuildContext context) => MainPage()));
+  }
+
+  createAlertDialog(BuildContext context, String qr_data){
+    return showDialog(context: context, builder: (context){
+      return AlertDialog(
+        title: Text(
+            "Your QR Code",
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              fontSize: 22, color: Color(0xFF0B2751), fontFamily: "acme"),
+        ),
+        content: new Container(
+          alignment: Alignment.center,
+          width: 180,
+          height: 180,
+          child:
+            new QrImage(
+              data: qr_data,
+              size: 180,
+              version: QrVersions.auto,
+            ),
+        ),
+      );
+    });
   }
 
   @override
@@ -321,7 +347,9 @@ class _HomePageState extends State<HomePage> {
         child: new FittedBox(
           child: new FloatingActionButton(
             focusColor: Color(0xFF28B9E4),
-            onPressed: () {},
+            onPressed: () {
+              createAlertDialog(context, users.email);
+            },
             child: new Padding(
               padding: const EdgeInsets.all(15),
               child: new Image.asset("assets/images/qr_code.png"),
