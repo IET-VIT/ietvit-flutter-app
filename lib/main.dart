@@ -1,17 +1,36 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:ietvit_app/authentication_provider.dart';
+import 'package:ietvit_app/home_page.dart';
 import 'package:ietvit_app/register_page.dart';
 import 'package:ietvit_app/login_page.dart';
+import 'package:provider/provider.dart';
 
-void main() => runApp(MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: new ThemeData(brightness: Brightness.light),
-      home: new MainPage(),
+    return MultiProvider(
+      providers: [
+        Provider<AuthenticationProvider>(
+          create: (_) => AuthenticationProvider(FirebaseAuth.instance),
+        ),
+        StreamProvider(
+          create: (context) => context.read<AuthenticationProvider>().authState,
+        )
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: new ThemeData(brightness: Brightness.light),
+        home: new MainPage(),
+      ),
     );
   }
 }
@@ -22,6 +41,23 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  @override
+  Widget build(BuildContext context) {
+    final firebaseUser = context.watch<User>();
+
+    if (firebaseUser != null) {
+      return HomePage();
+    }
+    return OptionsPage();
+  }
+}
+
+class OptionsPage extends StatefulWidget {
+  @override
+  _OptionsPageState createState() => _OptionsPageState();
+}
+
+class _OptionsPageState extends State<OptionsPage> {
   @override
   Widget build(BuildContext context) {
     MediaQueryData queryData = MediaQuery.of(context);
