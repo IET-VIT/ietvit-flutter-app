@@ -33,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
             duration: new Duration(seconds: 4),
             content: new Text(errorMessage + " :(",
                 style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 14,
                     color: Colors.white,
                     fontFamily: "poppins_semibold")));
         scaffkey.currentState.showSnackBar(snackb);
@@ -139,7 +139,7 @@ class _LoginPageState extends State<LoginPage> {
                                         horizontal: 20, vertical: 25),
                                     labelText: "E-Mail",
                                     labelStyle: TextStyle(
-                                        fontSize: 20,
+                                        fontSize: 16,
                                         fontFamily: "poppins_semibold")),
                                 validator: (val) => val.contains("@")
                                     ? null
@@ -179,10 +179,10 @@ class _LoginPageState extends State<LoginPage> {
                                         horizontal: 20, vertical: 25),
                                     labelText: "Password",
                                     labelStyle: TextStyle(
-                                        fontSize: 20,
+                                        fontSize: 16,
                                         fontFamily: "poppins_semibold")),
                                 keyboardType: TextInputType.name,
-                                validator: (val) => val.length < 3
+                                validator: (val) => val.length < 6
                                     ? "Enter Bigger Password"
                                     : null,
                                 onSaved: (val) => password = val,

@@ -12,6 +12,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final User users = FirebaseAuth.instance.currentUser;
+
   Future<void> signOut() async {
     await Firebase.initializeApp();
     FirebaseAuth.instance.signOut();
@@ -50,9 +51,10 @@ class _HomePageState extends State<HomePage> {
               accountName: new Text(
                 "Test Account",
                 style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
                     color: Colors.white,
-                    fontFamily: "roboto_medium"),
+                    fontFamily: "oneplus_slate"),
               ),
               accountEmail: new Text(
                 users.email,
@@ -81,18 +83,18 @@ class _HomePageState extends State<HomePage> {
                   ),
                   new Icon(
                     Icons.home,
-                    size: 35,
+                    size: 28,
                     color: Colors.grey[700],
                   ),
                   new Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
                   ),
                   new Text(
                     "Home",
                     style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.black,
-                        fontFamily: "poppins_semibold"),
+                        fontSize: 14,
+                        color: Color(0xDE000000),
+                        fontFamily: "roboto_medium"),
                   )
                 ],
               ),
@@ -104,7 +106,7 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             new Padding(
-              padding: const EdgeInsets.only(top: 35),
+              padding: const EdgeInsets.only(top: 25),
             ),
             new GestureDetector(
               child: new Row(
@@ -112,20 +114,50 @@ class _HomePageState extends State<HomePage> {
                   new Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                   ),
-                  new Icon(
-                    Icons.view_quilt,
-                    size: 35,
-                    color: Colors.grey[700],
+                  new SvgPicture.asset(
+                    "assets/icons/ic_dashboard_nav.svg",
+                    color: Colors.black45,
+                    height: 28,
+                    width: 28,
                   ),
                   new Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
                   ),
                   new Text(
                     "Dashboard",
                     style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.black,
-                        fontFamily: "poppins_semibold"),
+                        fontSize: 14,
+                        color: Color(0xDE000000),
+                        fontFamily: "roboto_medium"),
+                  )
+                ],
+              ),
+              onTap: () {},
+            ),
+            new Padding(
+              padding: const EdgeInsets.only(top: 25),
+            ),
+            new GestureDetector(
+              child: new Row(
+                children: [
+                  new Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                  ),
+                  new SvgPicture.asset(
+                    "assets/icons/ic_peer_nav.svg",
+                    color: Colors.black45,
+                    height: 28,
+                    width: 28,
+                  ),
+                  new Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                  ),
+                  new Text(
+                    "Peers",
+                    style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xDE000000),
+                        fontFamily: "roboto_medium"),
                   )
                 ],
               ),
@@ -149,8 +181,8 @@ class _HomePageState extends State<HomePage> {
                   child: new Text(
                     "Profile",
                     style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.grey,
+                        fontSize: 14,
+                        color: Color(0x8a000000),
                         fontFamily: "roboto_medium"),
                   ),
                 ),
@@ -167,18 +199,18 @@ class _HomePageState extends State<HomePage> {
                   ),
                   new Icon(
                     Icons.emoji_emotions,
-                    size: 35,
+                    size: 28,
                     color: Colors.grey[700],
                   ),
                   new Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
                   ),
                   new Text(
                     "Profile",
                     style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.black,
-                        fontFamily: "poppins_semibold"),
+                        fontSize: 14,
+                        color: Color(0xDE000000),
+                        fontFamily: "roboto_medium"),
                   )
                 ],
               ),
@@ -195,18 +227,18 @@ class _HomePageState extends State<HomePage> {
                   ),
                   new Image.asset(
                     "assets/images/hackoff_logo.png",
-                    width: 35,
-                    height: 50,
+                    width: 28,
+                    height: 28,
                   ),
                   new Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
                   ),
                   new Text(
                     "HackOff 3.0",
                     style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.black,
-                        fontFamily: "poppins_semibold"),
+                        fontSize: 14,
+                        color: Color(0xDE000000),
+                        fontFamily: "roboto_medium"),
                   )
                 ],
               ),
@@ -223,40 +255,40 @@ class _HomePageState extends State<HomePage> {
                   ),
                   new Icon(
                     Icons.keyboard_return,
-                    size: 35,
+                    size: 28,
                     color: Colors.grey[700],
                   ),
                   new Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
                   ),
                   new Text(
                     "Logout",
                     style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.black,
-                        fontFamily: "poppins_semibold"),
+                        fontSize: 14,
+                        color: Color(0xDE000000),
+                        fontFamily: "roboto_medium"),
                   )
                 ],
               ),
               onTap: signOut,
             ),
             new Padding(
-              padding: const EdgeInsets.only(top: 160),
+              padding: const EdgeInsets.only(top: 180),
             ),
             new Column(
               children: [
                 new Text("Version 1.2",
                     style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 14,
                         color: Color(0xFF0B2751),
-                        fontFamily: "poppins_semibold")),
+                        fontFamily: "acme")),
                 new Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     new Text(
                       "Made with ",
                       style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 16,
                           color: Colors.black,
                           fontFamily: "pacifico"),
                     ),
@@ -267,14 +299,14 @@ class _HomePageState extends State<HomePage> {
                     new Text(
                       " by ",
                       style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 16,
                           color: Colors.black,
                           fontFamily: "pacifico"),
                     ),
                     new Image.asset(
                       "assets/images/iet_logo_blue.png",
-                      width: 50,
-                      height: 50,
+                      width: 40,
+                      height: 36,
                     )
                   ],
                 )

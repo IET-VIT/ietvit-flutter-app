@@ -12,15 +12,15 @@ class _RegPageState extends State<RegPage> {
   final GlobalKey<ScaffoldState> scaffkey = GlobalKey<ScaffoldState>();
   String mail;
   String password;
-  String confrimPass;
+  String confirmPass;
 
   Future<void> signUp() async {
     if (formKey.currentState.validate()) {
       formKey.currentState.save();
-      if (confrimPass == password) {
+      if (confirmPass == password) {
         await Firebase.initializeApp();
         await FirebaseAuth.instance
-            .createUserWithEmailAndPassword(email: mail, password: confrimPass);
+            .createUserWithEmailAndPassword(email: mail, password: confirmPass);
         Navigator.pop(context);
       } else {
         final snackb = new SnackBar(
@@ -28,7 +28,7 @@ class _RegPageState extends State<RegPage> {
             duration: new Duration(seconds: 4),
             content: new Text("The two password dosen't match each other :(",
                 style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 14,
                     color: Colors.white,
                     fontFamily: "poppins_semibold")));
         scaffkey.currentState.showSnackBar(snackb);
@@ -134,7 +134,7 @@ class _RegPageState extends State<RegPage> {
                                         horizontal: 20, vertical: 25),
                                     labelText: "E-Mail",
                                     labelStyle: TextStyle(
-                                        fontSize: 20,
+                                        fontSize: 16,
                                         fontFamily: "poppins_semibold")),
                                 keyboardType: TextInputType.emailAddress,
                                 validator: (val) => val.contains("@")
@@ -174,10 +174,10 @@ class _RegPageState extends State<RegPage> {
                                         horizontal: 20, vertical: 25),
                                     labelText: "Password",
                                     labelStyle: TextStyle(
-                                        fontSize: 20,
+                                        fontSize: 16,
                                         fontFamily: "poppins_semibold")),
                                 keyboardType: TextInputType.name,
-                                validator: (val) => val.length < 3
+                                validator: (val) => val.length < 6
                                     ? "Enter Bigger Password"
                                     : null,
                                 onSaved: (val) => password = val,
@@ -214,13 +214,13 @@ class _RegPageState extends State<RegPage> {
                                         horizontal: 20, vertical: 25),
                                     labelText: "Confirm Password",
                                     labelStyle: TextStyle(
-                                        fontSize: 20,
+                                        fontSize: 16,
                                         fontFamily: "poppins_semibold")),
                                 keyboardType: TextInputType.name,
-                                validator: (val) => val.length < 3
+                                validator: (val) => val.length < 6
                                     ? "Enter Bigger Password"
                                     : null,
-                                onSaved: (val) => confrimPass = val,
+                                onSaved: (val) => confirmPass = val,
                               )),
                           new Padding(
                             padding: const EdgeInsets.only(top: 90),

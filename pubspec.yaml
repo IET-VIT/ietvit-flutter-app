@@ -32,11 +32,15 @@ dependencies:
   flutter_statusbarcolor: ^0.2.3
   firebase_core : ^0.5.0
   firebase_auth : ^0.18.0+1
+  floor: ^0.14.0
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  floor_generator: ^0.14.0
+  build_runner: ^1.7.3
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
