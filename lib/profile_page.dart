@@ -2,17 +2,38 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:ietvit_app/entities/User.dart' as entity_user;
 
 class ProfilePage extends StatefulWidget {
   @override
   _ProfilePageState createState() => _ProfilePageState();
 }
 
-
-
 class _ProfilePageState extends State<ProfilePage> {
 
   final User users = FirebaseAuth.instance.currentUser;
+
+  final databaseReference = FirebaseDatabase.instance.reference();
+  Future<List<entity_user.User>> getAllUsers() async{
+    print("Hello");
+    DataSnapshot dataSnapshot = await databaseReference.child('Users/').once();
+    List<entity_user.User> users = [];
+    if(dataSnapshot.value != null){
+      dataSnapshot.value.forEach((key, value)  {
+        entity_user.User user = entity_user.createUser(value);
+        users.add(user);
+        print(user.Name);
+      });
+    }
+    return [];
+  }
+
+  @override
+  void initState() {
+    getAllUsers();
+    super.initState();
+  }
 
   createAlertDialog(BuildContext context, String qr_data){
     return showDialog(context: context, builder: (context){
