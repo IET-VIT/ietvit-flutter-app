@@ -8,6 +8,7 @@ import 'package:ietvit_app/register_page.dart';
 import 'package:ietvit_app/login_page.dart';
 import 'package:provider/provider.dart';
 
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();

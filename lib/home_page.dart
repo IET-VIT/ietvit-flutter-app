@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:ietvit_app/main.dart';
 import 'package:ietvit_app/peers_page.dart';
+import 'package:ietvit_app/profile.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -248,7 +249,12 @@ class _HomePageState extends State<HomePage> {
                   )
                 ],
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => profile()));
+              },
             ),
             new Padding(
               padding: const EdgeInsets.only(top: 20),
