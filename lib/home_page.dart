@@ -5,8 +5,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:ietvit_app/main.dart';
-import 'package:ietvit_app/profile_page.dart';
+import 'package:ietvit_app/peers_page.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -14,7 +15,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   final User users = FirebaseAuth.instance.currentUser;
 
   Future<void> signOut() async {
@@ -24,33 +24,34 @@ class _HomePageState extends State<HomePage> {
         MaterialPageRoute(builder: (BuildContext context) => MainPage()));
   }
 
-  createAlertDialog(BuildContext context, String qr_data){
-    return showDialog(context: context, builder: (context){
-      return AlertDialog(
-        title: Text(
-            "Your QR Code",
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              fontSize: 22, color: Color(0xFF0B2751), fontFamily: "acme"),
-        ),
-        content: new Container(
-          alignment: Alignment.center,
-          width: 180,
-          height: 180,
-          child:
-            new QrImage(
-              data: qr_data,
-              size: 180,
-              version: QrVersions.auto,
+  createAlertDialog(BuildContext context, String qr_data) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text(
+              "Your QR Code",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontSize: 22, color: Color(0xFF0B2751), fontFamily: "acme"),
             ),
-        ),
-      );
-    });
+            content: new Container(
+              alignment: Alignment.center,
+              width: 180,
+              height: 180,
+              child: new QrImage(
+                data: qr_data,
+                size: 180,
+                version: QrVersions.auto,
+              ),
+            ),
+          );
+        });
   }
 
   @override
   Widget build(BuildContext context) {
-    FlutterStatusbarcolor.setStatusBarColor(Color(0xFF28B9E4));
+    FlutterStatusbarcolor.setStatusBarColor(Color(0xFF2594C2));
     return Scaffold(
       appBar: new AppBar(
         actions: [
@@ -134,7 +135,7 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             new Padding(
-              padding: const EdgeInsets.only(top: 25),
+              padding: const EdgeInsets.only(top: 20),
             ),
             new GestureDetector(
               child: new Row(
@@ -163,7 +164,7 @@ class _HomePageState extends State<HomePage> {
               onTap: () {},
             ),
             new Padding(
-              padding: const EdgeInsets.only(top: 25),
+              padding: const EdgeInsets.only(top: 20),
             ),
             new GestureDetector(
               child: new Row(
@@ -189,17 +190,22 @@ class _HomePageState extends State<HomePage> {
                   )
                 ],
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => PeerPage()));
+              },
             ),
             new Padding(
-              padding: const EdgeInsets.only(top: 20),
+              padding: const EdgeInsets.only(top: 15),
             ),
             new Divider(
               thickness: 1,
               color: Colors.grey[400],
             ),
             new Padding(
-              padding: const EdgeInsets.only(top: 20),
+              padding: const EdgeInsets.only(top: 10),
             ),
             new Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -242,9 +248,7 @@ class _HomePageState extends State<HomePage> {
                   )
                 ],
               ),
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>ProfilePage()));
-              },
+              onTap: () {},
             ),
             new Padding(
               padding: const EdgeInsets.only(top: 20),
@@ -272,7 +276,9 @@ class _HomePageState extends State<HomePage> {
                   )
                 ],
               ),
-              onTap: () {},
+              onTap: () {
+                launch("https://www.hackoff.tech");
+              },
             ),
             new Padding(
               padding: const EdgeInsets.only(top: 20),
@@ -303,42 +309,47 @@ class _HomePageState extends State<HomePage> {
               onTap: signOut,
             ),
             new Padding(
-              padding: const EdgeInsets.only(top: 180),
+              padding: const EdgeInsets.only(top: 170),
             ),
             new Column(
               children: [
-                new Text("Version 1.2",
+                new Text("Version 1.3",
                     style: TextStyle(
                         fontSize: 14,
                         color: Color(0xFF0B2751),
                         fontFamily: "acme")),
-                new Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    new Text(
-                      "Made with ",
-                      style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.black,
-                          fontFamily: "pacifico"),
-                    ),
-                    new SvgPicture.asset(
-                      "assets/icons/love.svg",
-                      color: Colors.red,
-                    ),
-                    new Text(
-                      " by ",
-                      style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.black,
-                          fontFamily: "pacifico"),
-                    ),
-                    new Image.asset(
-                      "assets/images/iet_logo_blue.png",
-                      width: 40,
-                      height: 36,
-                    )
-                  ],
+                new GestureDetector(
+                  onTap: (){
+                    launch("https://ietvit.tech");
+                  },
+                  child: new Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      new Text(
+                        "Made with ",
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                            fontFamily: "pacifico"),
+                      ),
+                      new SvgPicture.asset(
+                        "assets/icons/love.svg",
+                        color: Colors.red,
+                      ),
+                      new Text(
+                        " by ",
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                            fontFamily: "pacifico"),
+                      ),
+                      new Image.asset(
+                        "assets/images/iet_logo_blue.png",
+                        width: 40,
+                        height: 36,
+                      )
+                    ],
+                  ),
                 )
               ],
             )
@@ -346,11 +357,11 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       floatingActionButton: new Container(
-        width: 70,
-        height: 70,
+        width: 56,
+        height: 56,
         child: new FittedBox(
           child: new FloatingActionButton(
-            focusColor: Color(0xFF28B9E4),
+            backgroundColor: Color(0xFF28B9E4),
             onPressed: () {
               createAlertDialog(context, users.email);
             },

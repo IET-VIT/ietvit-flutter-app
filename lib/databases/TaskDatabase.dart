@@ -8,7 +8,7 @@ import 'package:sqflite/sqflite.dart' as sqflite;
 part 'TaskDatabase.g.dart';
 
 @Database(version: 1, entities: [Task])
-abstract class UserDatabase extends FloorDatabase{
+abstract class TaskDatabase extends FloorDatabase{
 
   TaskDao get taskDao;
 }

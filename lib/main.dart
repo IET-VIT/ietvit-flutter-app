@@ -6,16 +6,9 @@ import 'package:ietvit_app/authentication_provider.dart';
 import 'package:ietvit_app/home_page.dart';
 import 'package:ietvit_app/register_page.dart';
 import 'package:ietvit_app/login_page.dart';
-import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
 
 Future<void> main() async {
-
-  Logger.root.level = Level.ALL;
-  Logger.root.onRecord.listen((record) {
-    print('${record.level.name}: ${record.time}: ${record.message}');
-  });
-
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());

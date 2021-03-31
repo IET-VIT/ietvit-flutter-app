@@ -6,21 +6,21 @@ part of 'TaskDatabase.dart';
 // FloorGenerator
 // **************************************************************************
 
-class $FloorUserDatabase {
+class $FloorTaskDatabase {
   /// Creates a database builder for a persistent database.
   /// Once a database is built, you should keep a reference to it and re-use it.
-  static _$UserDatabaseBuilder databaseBuilder(String name) =>
-      _$UserDatabaseBuilder(name);
+  static _$TaskDatabaseBuilder databaseBuilder(String name) =>
+      _$TaskDatabaseBuilder(name);
 
   /// Creates a database builder for an in memory database.
   /// Information stored in an in memory database disappears when the process is killed.
   /// Once a database is built, you should keep a reference to it and re-use it.
-  static _$UserDatabaseBuilder inMemoryDatabaseBuilder() =>
-      _$UserDatabaseBuilder(null);
+  static _$TaskDatabaseBuilder inMemoryDatabaseBuilder() =>
+      _$TaskDatabaseBuilder(null);
 }
 
-class _$UserDatabaseBuilder {
-  _$UserDatabaseBuilder(this.name);
+class _$TaskDatabaseBuilder {
+  _$TaskDatabaseBuilder(this.name);
 
   final String name;
 
@@ -29,23 +29,23 @@ class _$UserDatabaseBuilder {
   Callback _callback;
 
   /// Adds migrations to the builder.
-  _$UserDatabaseBuilder addMigrations(List<Migration> migrations) {
+  _$TaskDatabaseBuilder addMigrations(List<Migration> migrations) {
     _migrations.addAll(migrations);
     return this;
   }
 
   /// Adds a database [Callback] to the builder.
-  _$UserDatabaseBuilder addCallback(Callback callback) {
+  _$TaskDatabaseBuilder addCallback(Callback callback) {
     _callback = callback;
     return this;
   }
 
   /// Creates the database and initializes it.
-  Future<UserDatabase> build() async {
+  Future<TaskDatabase> build() async {
     final path = name != null
         ? await sqfliteDatabaseFactory.getDatabasePath(name)
         : ':memory:';
-    final database = _$UserDatabase();
+    final database = _$TaskDatabase();
     database.database = await database.open(
       path,
       _migrations,
@@ -55,8 +55,8 @@ class _$UserDatabaseBuilder {
   }
 }
 
-class _$UserDatabase extends UserDatabase {
-  _$UserDatabase([StreamController<String> listener]) {
+class _$TaskDatabase extends TaskDatabase {
+  _$TaskDatabase([StreamController<String> listener]) {
     changeListener = listener ?? StreamController<String>.broadcast();
   }
 
