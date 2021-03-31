@@ -1,13 +1,44 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:qr_flutter/qr_flutter.dart';
+
+
 
 class profile extends StatefulWidget {
   @override
   _profileState createState() => _profileState();
 }
 
+
 class _profileState extends State<profile> {
+  final User user = FirebaseAuth.instance.currentUser;
+
+  createAlertDialog(BuildContext context, String qr_data){
+    return showDialog(context: context, builder: (context){
+      return AlertDialog(
+        title: Text(
+          "Your QR Code",
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              fontSize: 22, color: Color(0xFF0B2751), fontFamily: "acme"),
+        ),
+        content: new Container(
+          alignment: Alignment.center,
+          width: 180,
+          height: 180,
+          child:
+          new QrImage(
+            data: qr_data,
+            size: 180,
+            version: QrVersions.auto,
+          ),
+        ),
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     MediaQueryData queryData = MediaQuery.of(context);
@@ -27,6 +58,24 @@ class _profileState extends State<profile> {
               fontSize: 20, color: Colors.white, fontFamily: "roboto_medium"),
         ),
       ),
+
+      floatingActionButton: new Container(
+        width: 56,
+        height: 56,
+        child: new FittedBox(
+          child: new FloatingActionButton(
+            backgroundColor: Color(0xFF28B9E4),
+            onPressed: () {
+            createAlertDialog(context, user.email);
+            },
+            child: new Padding(
+              padding: const EdgeInsets.all(15),
+              child: new Image.asset("assets/images/qr_code.png"),
+            ),
+          ),
+        ),
+      ),
+
       body: new SingleChildScrollView(
         child: new Column(
           mainAxisAlignment: MainAxisAlignment.center,
