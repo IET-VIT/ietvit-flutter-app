@@ -64,8 +64,6 @@ class _PeerState extends State<PeerPage> {
   @override
   Widget build(BuildContext context) {
 
-    MediaQueryData queryData = MediaQuery.of(context);
-
     return new Scaffold(
       appBar: new AppBar(
         actions: [
@@ -111,7 +109,10 @@ class _PeerState extends State<PeerPage> {
                           padding: const EdgeInsets.all(8.0),
                           child: Container(
                             child: new CircleAvatar(
-                              backgroundImage: new NetworkImage(users[index].Profile),
+                              backgroundImage: 
+                              users[index].Profile == null || users[index].Profile.isEmpty 
+                                  ? AssetImage("assets/images/profile_image.jpg")
+                              : new NetworkImage(users[index].Profile),
                               radius: 35.0,
                             ),
                           ),

@@ -115,7 +115,11 @@ class _HomePageState extends State<HomePage> {
                     color: Colors.white38,
                     fontFamily: "roboto_medium"),
               ),
-              currentAccountPicture: new CircleAvatar(
+              currentAccountPicture:
+              currentUser.Profile.isEmpty || currentUser.Profile == null
+                  ? new CircleAvatar(
+                backgroundImage: AssetImage("assets/images/profile_image.jpg"),
+              ) : new CircleAvatar(
                 backgroundImage: new NetworkImage(currentUser.Profile),
               ),
             ),
@@ -270,7 +274,7 @@ class _HomePageState extends State<HomePage> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (BuildContext context) => Profile()));
+                        builder: (BuildContext context) => Profile(currentUser: currentUser)));
               },
             ),
             new Padding(
@@ -528,7 +532,7 @@ class _HomePageState extends State<HomePage> {
                                 children: [
                                   new Card(
                                     child: new Image.asset("assets/images/event.png", width: 140, height: 100),
-                                    elevation: 4,
+                                    elevation: 2,
                                     shape: new RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(4)))
                                   ),
                                   new Column(

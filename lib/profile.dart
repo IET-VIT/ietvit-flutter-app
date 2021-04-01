@@ -7,10 +7,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:ietvit_app/entities/User.dart' as entity_user;
 
 class Profile extends StatefulWidget {
+
   @override
   _ProfileState createState() => _ProfileState();
+
+  final entity_user.User currentUser;
+  Profile({Key key, @required this.currentUser}) : super(key: key);
 }
 
 class _ProfileState extends State<Profile> {
@@ -129,7 +134,7 @@ class _ProfileState extends State<Profile> {
                             child: new CircleAvatar(
                               backgroundImage: _isImageThere
                                   ? FileImage(_image)
-                                  : AssetImage("assets/images/profile_image.jpg"),
+                                  : (widget.currentUser.Profile == null || widget.currentUser.Profile.isEmpty ? AssetImage("assets/images/profile_image.jpg"): NetworkImage(widget.currentUser.Profile)),
                               radius: 70.0,
                             ),
                           ),
@@ -138,7 +143,7 @@ class _ProfileState extends State<Profile> {
                     ),
                     new GestureDetector(
                       child: new Padding(
-                          padding: const EdgeInsets.only(left: 250, top: 10),
+                          padding: const EdgeInsets.only(left: 240, top: 10),
                           child: new Container(
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
@@ -151,10 +156,10 @@ class _ProfileState extends State<Profile> {
                                     ])),
                             child: new CircleAvatar(
                               backgroundColor: Colors.transparent,
-                              radius: 20,
+                              radius: 16,
                               child: new Icon(
                                 Icons.edit,
-                                size: 24,
+                                size: 20,
                                 color: Colors.white,
                               ),
                             ),
@@ -167,7 +172,7 @@ class _ProfileState extends State<Profile> {
                   padding: const EdgeInsets.only(top: 20),
                 ),
                 new Text(
-                  "User's Name",
+                  widget.currentUser.Name,
                   style: TextStyle(
                       fontSize: 22,
                       color: Color(0xFF0B2751),
@@ -203,11 +208,10 @@ class _ProfileState extends State<Profile> {
                             width: 36,
                           ),
                           new Padding(
-                            padding: const EdgeInsets.only(left: 64),
+                            padding: const EdgeInsets.only(left: 32),
                           ),
-                          //new Padding(padding: const EdgeInsets.all(40)),
                           new Text(
-                            "user@email.com",
+                            user.email,
                             style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.white,
@@ -229,11 +233,10 @@ class _ProfileState extends State<Profile> {
                             width: 36,
                           ),
                           new Padding(
-                            padding: const EdgeInsets.only(left: 64),
+                            padding: const EdgeInsets.only(left: 32),
                           ),
-                          //new Padding(padding: const EdgeInsets.all(40)),
                           new Text(
-                            "9999999999",
+                            widget.currentUser.Number,
                             style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.white,
@@ -255,11 +258,10 @@ class _ProfileState extends State<Profile> {
                             width: 36,
                           ),
                           new Padding(
-                            padding: const EdgeInsets.only(left: 64),
+                            padding: const EdgeInsets.only(left: 32),
                           ),
-                          //  new Padding(padding: const EdgeInsets.all(40)),
                           new Text(
-                            "Role 1",
+                            widget.currentUser.Role,
                             style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.white,
@@ -281,9 +283,8 @@ class _ProfileState extends State<Profile> {
                             width: 36,
                           ),
                           new Padding(
-                            padding: const EdgeInsets.only(left: 64),
+                            padding: const EdgeInsets.only(left: 32),
                           ),
-                          // new Padding(padding: const EdgeInsets.all(40)),
                           new Text(
                             "Role 2",
                             style: TextStyle(
@@ -306,9 +307,8 @@ class _ProfileState extends State<Profile> {
                             height: 36,
                             width: 36,
                           ),
-                          //new Padding(padding: const EdgeInsets.all(40)),
                           new Padding(
-                            padding: const EdgeInsets.only(left: 64),
+                            padding: const EdgeInsets.only(left: 32),
                           ),
                           new Text(
                             "Timetable",
