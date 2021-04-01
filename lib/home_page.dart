@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
@@ -9,6 +11,7 @@ import 'package:ietvit_app/peers_page.dart';
 import 'package:ietvit_app/profile.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:ietvit_app/entities/User.dart' as entity_user;
 
 class HomePage extends StatefulWidget {
   @override
@@ -16,7 +19,25 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final User users = FirebaseAuth.instance.currentUser;
+
+  final User user = FirebaseAuth.instance.currentUser;
+  entity_user.User currentUser;
+
+  @override
+  void initState() {
+    getCurrentUserData();
+    super.initState();
+  }
+
+  Future<void> getCurrentUserData() async {
+    final databaseReference = FirebaseDatabase.instance.reference().child('Users/').child(user.uid);
+    DataSnapshot dataSnapshot = await databaseReference.once();
+    if (dataSnapshot.value != null) {
+      setState(() {
+        currentUser = entity_user.createUser(dataSnapshot.value);
+      });
+    }
+  }
 
   Future<void> signOut() async {
     await Firebase.initializeApp();
@@ -52,6 +73,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    MediaQueryData queryData = MediaQuery.of(context);
     FlutterStatusbarcolor.setStatusBarColor(Color(0xFF2594C2));
     return Scaffold(
       appBar: new AppBar(
@@ -69,7 +91,7 @@ class _HomePageState extends State<HomePage> {
               fontSize: 20, color: Colors.white, fontFamily: "roboto_medium"),
         ),
       ),
-      drawer: new Drawer(
+      drawer: currentUser == null ? Center(child: new CircularProgressIndicator()) : new Drawer(
         child: new ListView(
           children: [
             new UserAccountsDrawerHeader(
@@ -79,7 +101,7 @@ class _HomePageState extends State<HomePage> {
                       end: Alignment(1, 0),
                       colors: [Color(0xFF57B7D7), Color(0xFF0B2751)])),
               accountName: new Text(
-                "User's Account",
+                currentUser.Name,
                 style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -87,19 +109,14 @@ class _HomePageState extends State<HomePage> {
                     fontFamily: "oneplus_slate"),
               ),
               accountEmail: new Text(
-                users.email,
+                user.email,
                 style: TextStyle(
                     fontSize: 15,
                     color: Colors.white38,
                     fontFamily: "roboto_medium"),
               ),
               currentAccountPicture: new CircleAvatar(
-                backgroundColor: Colors.blue[700],
-                child: new Text(
-                  "TA",
-                  style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.bold),
-                ),
+                backgroundImage: new NetworkImage(currentUser.Profile),
               ),
             ),
             new Padding(
@@ -325,7 +342,7 @@ class _HomePageState extends State<HomePage> {
                         color: Color(0xFF0B2751),
                         fontFamily: "acme")),
                 new GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     launch("https://ietvit.tech");
                   },
                   child: new Row(
@@ -369,7 +386,7 @@ class _HomePageState extends State<HomePage> {
           child: new FloatingActionButton(
             backgroundColor: Color(0xFF28B9E4),
             onPressed: () {
-              createAlertDialog(context, users.email);
+              createAlertDialog(context, user.email);
             },
             child: new Padding(
               padding: const EdgeInsets.all(15),
@@ -411,24 +428,24 @@ class _HomePageState extends State<HomePage> {
                       shadowColor: Colors.grey,
                       shape: new RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(15))),
-                      child: new Column(
-                        children: [
-                          new Padding(
-                              padding: const EdgeInsets.all(20),
-                              child: new Text(
-                                "No meetings upcoming",
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.blue[800],
-                                    fontFamily: "poppins_semibold"),
-                              )),
-                        ],
-                      ))
+                      child: new Container(
+                        alignment: Alignment.center,
+                        height: 110,
+                        width: queryData.size.width - 32,
+                        child: new Text(
+                          "No meetings upcoming",
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.blue[800],
+                              fontFamily: "poppins_semibold"),
+                        ),
+                      ),
+                  ),
                 ],
               ),
             ),
             new Padding(
-              padding: const EdgeInsets.only(top: 60),
+              padding: const EdgeInsets.only(top: 20),
             ),
             new Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -446,7 +463,7 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
             new Padding(
-              padding: const EdgeInsets.only(top: 20),
+              padding: const EdgeInsets.only(top: 16),
             ),
             new SingleChildScrollView(
               scrollDirection: Axis.horizontal,
@@ -460,7 +477,7 @@ class _HomePageState extends State<HomePage> {
                       child: new Column(
                         children: [
                           new Padding(
-                              padding: const EdgeInsets.all(20),
+                              padding: const EdgeInsets.all(50),
                               child: new Text(
                                 "All Tasks Completed",
                                 style: TextStyle(
@@ -474,7 +491,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             new Padding(
-              padding: const EdgeInsets.only(top: 60),
+              padding: const EdgeInsets.only(top: 24),
             ),
             new Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -492,7 +509,7 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
             new Padding(
-              padding: const EdgeInsets.only(top: 20),
+              padding: const EdgeInsets.only(top: 16),
             ),
             new SingleChildScrollView(
               scrollDirection: Axis.horizontal,
@@ -506,32 +523,33 @@ class _HomePageState extends State<HomePage> {
                       child: new Column(
                         children: [
                           new Padding(
-                              padding: const EdgeInsets.all(20),
+                              padding: const EdgeInsets.all(12),
                               child: new Row(
                                 children: [
-                                  new Image.asset(
-                                    "assets/images/event.png",
-                                    width: 100,
-                                    height: 100,
+                                  new Card(
+                                    child: new Image.asset("assets/images/event.png", width: 140, height: 100),
+                                    elevation: 4,
+                                    shape: new RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(4)))
                                   ),
                                   new Column(
                                     children: [
                                       new Text(
                                         "Date to be announced",
                                         style: TextStyle(
-                                            fontSize: 20,
+                                            fontSize: 14,
                                             color: Colors.red,
                                             fontFamily: "poppins_semibold"),
                                       ),
                                       new Padding(
-                                        padding: const EdgeInsets.only(top: 10),
+                                        padding: const EdgeInsets.only(top: 20),
                                       ),
                                       new Text(
                                         "This is a SAMPLE Event",
                                         style: TextStyle(
-                                            fontSize: 20,
-                                            color: Colors.blue[800],
-                                            fontFamily: "poppins_semibold"),
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold,
+                                            color: Color(0xFF0B2751),
+                                            fontFamily: "sans-serif"),
                                       ),
                                     ],
                                   )
