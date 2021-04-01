@@ -67,6 +67,10 @@ alt="Splash View" width="300">
 alt="Splash View" width="300">
 <img src="assets/app_ss/drawer.jpg"
 alt="Splash View" width="300">
+<img src="assets/app_ss/profile.jpg"
+alt="Splash View" width="300">
+<img src="assets/app_ss/peers.jpg"
+alt="Splash View" width="300">
 </p>
 
 
