@@ -6,12 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-class profile extends StatefulWidget {
+class Profile extends StatefulWidget {
   @override
-  _profileState createState() => _profileState();
+  _ProfileState createState() => _ProfileState();
 }
 
-class _profileState extends State<profile> {
+class _ProfileState extends State<Profile> {
   final User user = FirebaseAuth.instance.currentUser;
   File _image;
   bool isImageThere = false;
@@ -105,29 +105,42 @@ class _profileState extends State<profile> {
                     Center(
                       child: new Material(
                           child: InkWell(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            child: new CircleAvatar(
-                              backgroundImage: isImageThere
-                                  ? FileImage(_image)
-                                  : AssetImage("assets/images/iet_logo.png"),
-                              radius: 70.0,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                child: new CircleAvatar(
+                                  backgroundImage: isImageThere
+                                      ? FileImage(_image)
+                                      : AssetImage(
+                                      "assets/images/iet_logo.png"),
+                                  radius: 70.0,
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                      )),
+                          )),
                     ),
                     new GestureDetector(
                       child: new Padding(
-                          padding: const EdgeInsets.only(left: 240, top: 10),
-                          child: new CircleAvatar(
-                            backgroundColor: Color(0xFF28B9E4),
-                            radius: 20,
-                            child: new Icon(
-                              Icons.edit,
-                              size: 30,
-                              color: Colors.grey[600],
+                          padding: const EdgeInsets.only(left: 250, top: 10),
+                          child: new Container(
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                gradient: LinearGradient(
+                                    begin: Alignment.topLeft,
+                                    end: Alignment(1, 0),
+                                    colors: [
+                                      Color(0xFF57B7D7),
+                                      Color(0xFF0B2751)
+                                    ])
+                            ),
+                            child: new CircleAvatar(
+                              backgroundColor: Colors.transparent,
+                              radius: 20,
+                              child: new Icon(
+                                Icons.edit,
+                                size: 24,
+                                color: Colors.white,
+                              ),
                             ),
                           )),
                       onTap: getImage,
@@ -153,7 +166,7 @@ class _profileState extends State<profile> {
                   width: queryData.size.width,
                 ),
                 new Container(
-                  height: queryData.size.height * 0.53,
+                  height: queryData.size.height * 0.54,
                   width: queryData.size.width,
                   decoration: new BoxDecoration(
                     color: Color(0xFF28B9E4),
@@ -289,6 +302,42 @@ class _profileState extends State<profile> {
                                 fontFamily: "acme"),
                           ),
                         ],
+                      ),
+                      new Padding(
+                        padding: const EdgeInsets.only(top: 120),
+                      ),
+                      Visibility(
+                        visible: isImageThere,
+                        child: new GestureDetector(
+                          child: new Container(
+                            width: 350,
+                            height: 60,
+                            child: new Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                new Text(
+                                  "UPDATE",
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: "sans-serif-medium"),
+                                ),
+                              ],
+                            ),
+                            decoration: new BoxDecoration(
+                                borderRadius:
+                                BorderRadius.all(Radius.circular(50)),
+                                gradient: LinearGradient(colors: [
+                                  Color(0xFF0B2751),
+                                  Color(0xFF57B7D7)
+                                ])),
+                          ),
+                          onTap: () {
+                            print("Hello");
+                          },
+                        ),
                       ),
                     ],
                   ),

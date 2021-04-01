@@ -253,7 +253,7 @@ class _HomePageState extends State<HomePage> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (BuildContext context) => profile()));
+                        builder: (BuildContext context) => Profile()));
               },
             ),
             new Padding(
