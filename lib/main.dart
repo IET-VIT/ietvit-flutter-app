@@ -8,7 +8,6 @@ import 'package:ietvit_app/register_page.dart';
 import 'package:ietvit_app/login_page.dart';
 import 'package:provider/provider.dart';
 
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -76,25 +75,25 @@ class _OptionsPageState extends State<OptionsPage> {
               children: [
                 new Image.asset(
                   "assets/images/iet_logo.png",
-                  height: 140,
-                  width: 140,
+                  height: 120,
+                  width: 120,
                 ),
                 new Image.asset(
                   "assets/images/hackoff_logo.png",
-                  height: 140,
-                  width: 140,
+                  height: 120,
+                  width: 120,
                 )
               ],
             ),
             new Padding(
-              padding: const EdgeInsets.only(top: 52),
+              padding: const EdgeInsets.only(top: 54),
             ),
             new Image.asset(
               "assets/images/ic_wave.png",
               width: queryData.size.width,
             ),
             new Container(
-              height: queryData.size.height * 0.65,
+              height: queryData.size.height * 0.66,
               width: queryData.size.width,
               decoration: new BoxDecoration(color: Color(0xFF28B9E4)),
               child: new Column(

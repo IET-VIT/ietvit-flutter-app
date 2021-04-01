@@ -54,25 +54,25 @@ class _RegPageState extends State<RegPage> {
                 children: [
                   new Image.asset(
                     "assets/images/iet_logo.png",
-                    height: 150,
-                    width: 200,
+                    height: 120,
+                    width: 120,
                   ),
                   new Image.asset(
                     "assets/images/hackoff_logo.png",
-                    height: 150,
-                    width: 200,
+                    height: 120,
+                    width: 120,
                   )
                 ],
               ),
               new Padding(
-                padding: const EdgeInsets.only(top: 50),
+                padding: const EdgeInsets.only(top: 54),
               ),
               new Image.asset(
                 "assets/images/ic_wave.png",
                 width: queryData.size.width,
               ),
               new Container(
-                height: queryData.size.height * 0.65,
+                height: queryData.size.height * 0.66,
                 width: queryData.size.width,
                 decoration: new BoxDecoration(
                   color: Color(0xFF28B9E4),

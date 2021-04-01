@@ -105,19 +105,18 @@ class _ProfileState extends State<Profile> {
                     Center(
                       child: new Material(
                           child: InkWell(
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Container(
-                                child: new CircleAvatar(
-                                  backgroundImage: isImageThere
-                                      ? FileImage(_image)
-                                      : AssetImage(
-                                      "assets/images/iet_logo.png"),
-                                  radius: 70.0,
-                                ),
-                              ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            child: new CircleAvatar(
+                              backgroundImage: isImageThere
+                                  ? FileImage(_image)
+                                  : AssetImage("assets/images/iet_logo.png"),
+                              radius: 70.0,
                             ),
-                          )),
+                          ),
+                        ),
+                      )),
                     ),
                     new GestureDetector(
                       child: new Padding(
@@ -131,8 +130,7 @@ class _ProfileState extends State<Profile> {
                                     colors: [
                                       Color(0xFF57B7D7),
                                       Color(0xFF0B2751)
-                                    ])
-                            ),
+                                    ])),
                             child: new CircleAvatar(
                               backgroundColor: Colors.transparent,
                               radius: 20,
@@ -159,14 +157,14 @@ class _ProfileState extends State<Profile> {
                       fontFamily: "berkshire_swash"),
                 ),
                 new Padding(
-                  padding: const EdgeInsets.only(top: 0),
+                  padding: const EdgeInsets.only(top: 10),
                 ),
                 new Image.asset(
                   "assets/images/ic_wave.png",
                   width: queryData.size.width,
                 ),
                 new Container(
-                  height: queryData.size.height * 0.54,
+                  height: queryData.size.height * 0.52,
                   width: queryData.size.width,
                   decoration: new BoxDecoration(
                     color: Color(0xFF28B9E4),
@@ -304,7 +302,7 @@ class _ProfileState extends State<Profile> {
                         ],
                       ),
                       new Padding(
-                        padding: const EdgeInsets.only(top: 120),
+                        padding: const EdgeInsets.only(top: 80),
                       ),
                       Visibility(
                         visible: isImageThere,
@@ -328,7 +326,7 @@ class _ProfileState extends State<Profile> {
                             ),
                             decoration: new BoxDecoration(
                                 borderRadius:
-                                BorderRadius.all(Radius.circular(50)),
+                                    BorderRadius.all(Radius.circular(50)),
                                 gradient: LinearGradient(colors: [
                                   Color(0xFF0B2751),
                                   Color(0xFF57B7D7)
