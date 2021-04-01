@@ -7,6 +7,9 @@ PODS:
   - Firebase/Database (6.33.0):
     - Firebase/CoreOnly
     - FirebaseDatabase (~> 6.6.0)
+  - Firebase/Storage (6.33.0):
+    - Firebase/CoreOnly
+    - FirebaseStorage (~> 3.9.0)
   - firebase_auth (0.18.4-1):
     - Firebase/Auth (~> 6.33.0)
     - Firebase/CoreOnly (~> 6.33.0)
@@ -18,6 +21,11 @@ PODS:
   - firebase_database (4.4.0):
     - Firebase/CoreOnly (~> 6.33.0)
     - Firebase/Database (~> 6.33.0)
+    - firebase_core
+    - Flutter
+  - firebase_storage (5.2.0):
+    - Firebase/CoreOnly (~> 6.33.0)
+    - Firebase/Storage (~> 6.33.0)
     - firebase_core
     - Flutter
   - FirebaseAuth (6.9.2):
@@ -37,6 +45,9 @@ PODS:
   - FirebaseDatabase (6.6.0):
     - FirebaseCore (~> 6.10)
     - leveldb-library (~> 1.22)
+  - FirebaseStorage (3.9.1):
+    - FirebaseCore (~> 6.10)
+    - GTMSessionFetcher/Core (~> 1.1)
   - Flutter (1.0.0)
   - flutter_statusbarcolor (0.0.1):
     - Flutter
@@ -80,6 +91,7 @@ DEPENDENCIES:
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_database (from `.symlinks/plugins/firebase_database/ios`)
+  - firebase_storage (from `.symlinks/plugins/firebase_storage/ios`)
   - Flutter (from `Flutter`)
   - flutter_statusbarcolor (from `.symlinks/plugins/flutter_statusbarcolor/ios`)
   - image_picker (from `.symlinks/plugins/image_picker/ios`)
@@ -93,6 +105,7 @@ SPEC REPOS:
     - FirebaseCore
     - FirebaseCoreDiagnostics
     - FirebaseDatabase
+    - FirebaseStorage
     - FMDB
     - GoogleDataTransport
     - GoogleUtilities
@@ -108,6 +121,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_core/ios"
   firebase_database:
     :path: ".symlinks/plugins/firebase_database/ios"
+  firebase_storage:
+    :path: ".symlinks/plugins/firebase_storage/ios"
   Flutter:
     :path: Flutter
   flutter_statusbarcolor:
@@ -124,10 +139,12 @@ SPEC CHECKSUMS:
   firebase_auth: d5159db3873478d1ac839af7b10d2f831516136a
   firebase_core: 5d6a02f3d85acd5f8321c2d6d62877626a670659
   firebase_database: a3737781469b5275f899e04fcb0aa556f37e400a
+  firebase_storage: a023e199edb807d8481c8aa722c8516f462ffab2
   FirebaseAuth: c92d49ada7948d1a23466e3db17bc4c2039dddc3
   FirebaseCore: d889d9e12535b7f36ac8bfbf1713a0836a3012cd
   FirebaseCoreDiagnostics: 770ac5958e1372ce67959ae4b4f31d8e127c3ac1
   FirebaseDatabase: 13a865a4b85897462b930eb683bda8f52583713f
+  FirebaseStorage: 15e0f15ef3c7fec3d1899d68623e47d4447066b4
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
   flutter_statusbarcolor: 8afb1071ed8c58be929f1e32b36c629771fd2259
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a

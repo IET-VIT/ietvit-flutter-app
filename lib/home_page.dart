@@ -79,7 +79,7 @@ class _HomePageState extends State<HomePage> {
                       end: Alignment(1, 0),
                       colors: [Color(0xFF57B7D7), Color(0xFF0B2751)])),
               accountName: new Text(
-                "Test Account",
+                "User's Account",
                 style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,

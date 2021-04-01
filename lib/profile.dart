@@ -1,10 +1,12 @@
 import 'dart:io';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class Profile extends StatefulWidget {
   @override
@@ -12,9 +14,10 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+
   final User user = FirebaseAuth.instance.currentUser;
   File _image;
-  bool isImageThere = false;
+  bool _isImageThere = false;
   final picker = ImagePicker();
 
   Future getImage() async {
@@ -23,11 +26,26 @@ class _ProfileState extends State<Profile> {
     setState(() {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
-        isImageThere = true;
+        _isImageThere = !_isImageThere;
       } else {
         print('No image selected.');
       }
     });
+  }
+
+  Reference storageRef = FirebaseStorage.instance.ref("User Profile Photos");
+
+  Future<void> uploadFile() async {
+    UploadTask task = storageRef.child(user.uid + "hill").putFile(_image);
+    DatabaseReference databaseRef = FirebaseDatabase.instance.reference().child("Users").child(user.uid);
+
+    task.whenComplete(() => task.snapshot.ref.getDownloadURL().then((value) => {
+          print("Done: $value"),
+          databaseRef.update({"Profile": value}),
+          setState(() {
+            _isImageThere = !_isImageThere;
+          })
+        }));
   }
 
   createAlertDialog(BuildContext context, String qr_data) {
@@ -109,9 +127,9 @@ class _ProfileState extends State<Profile> {
                           padding: const EdgeInsets.all(8.0),
                           child: Container(
                             child: new CircleAvatar(
-                              backgroundImage: isImageThere
+                              backgroundImage: _isImageThere
                                   ? FileImage(_image)
-                                  : AssetImage("assets/images/iet_logo.png"),
+                                  : AssetImage("assets/images/profile_image.jpg"),
                               radius: 70.0,
                             ),
                           ),
@@ -149,7 +167,7 @@ class _ProfileState extends State<Profile> {
                   padding: const EdgeInsets.only(top: 20),
                 ),
                 new Text(
-                  "Test Account",
+                  "User's Name",
                   style: TextStyle(
                       fontSize: 22,
                       color: Color(0xFF0B2751),
@@ -164,7 +182,7 @@ class _ProfileState extends State<Profile> {
                   width: queryData.size.width,
                 ),
                 new Container(
-                  height: queryData.size.height * 0.52,
+                  height: queryData.size.height * 0.54,
                   width: queryData.size.width,
                   decoration: new BoxDecoration(
                     color: Color(0xFF28B9E4),
@@ -189,7 +207,7 @@ class _ProfileState extends State<Profile> {
                           ),
                           //new Padding(padding: const EdgeInsets.all(40)),
                           new Text(
-                            "testing@test.com",
+                            "user@email.com",
                             style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.white,
@@ -215,7 +233,7 @@ class _ProfileState extends State<Profile> {
                           ),
                           //new Padding(padding: const EdgeInsets.all(40)),
                           new Text(
-                            "9999900000",
+                            "9999999999",
                             style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.white,
@@ -241,7 +259,7 @@ class _ProfileState extends State<Profile> {
                           ),
                           //  new Padding(padding: const EdgeInsets.all(40)),
                           new Text(
-                            "Board",
+                            "Role 1",
                             style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.white,
@@ -267,7 +285,7 @@ class _ProfileState extends State<Profile> {
                           ),
                           // new Padding(padding: const EdgeInsets.all(40)),
                           new Text(
-                            "Secondary Role",
+                            "Role 2",
                             style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.white,
@@ -302,14 +320,14 @@ class _ProfileState extends State<Profile> {
                         ],
                       ),
                       new Padding(
-                        padding: const EdgeInsets.only(top: 80),
+                        padding: const EdgeInsets.only(top: 50),
                       ),
                       Visibility(
-                        visible: isImageThere,
+                        visible: _isImageThere,
                         child: new GestureDetector(
                           child: new Container(
-                            width: 350,
-                            height: 60,
+                            width: queryData.size.width - 80,
+                            height: 50,
                             child: new Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -333,7 +351,7 @@ class _ProfileState extends State<Profile> {
                                 ])),
                           ),
                           onTap: () {
-                            print("Hello");
+                            uploadFile();
                           },
                         ),
                       ),
