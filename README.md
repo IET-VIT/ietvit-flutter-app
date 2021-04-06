@@ -60,17 +60,12 @@ $ git clone repolink.git
 ## Screenshots
 
 <p>
-<img src="assets/app_ss/register.jpg"
-alt="Splash View" width="300">
-<img src="assets/app_ss/login.jpg" alt="Home View" width="300">
-<img src="assets/app_ss/home.jpg"
-alt="Splash View" width="300">
-<img src="assets/app_ss/drawer.jpg"
-alt="Splash View" width="300">
-<img src="assets/app_ss/profile.jpg"
-alt="Splash View" width="300">
-<img src="assets/app_ss/peers.jpg"
-alt="Splash View" width="300">
+<img src="assets/app_ss/register.jpg" alt="Splash View" width="150">
+<img src="assets/app_ss/login.jpg" alt="Home View" width="150">
+<img src="assets/app_ss/home.jpg" alt="Splash View" width="150">
+<img src="assets/app_ss/drawer.jpg" alt="Splash View" width="150">
+<img src="assets/app_ss/profile.jpg" alt="Splash View" width="150">
+<img src="assets/app_ss/peers.jpg" alt="Splash View" width="150">
 </p>
 
 
